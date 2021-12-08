@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Ajout d'une marque{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections my-4">
+    <h2 class="text-center mt-2">Ajout d'une marque</h2>
+    <div class="col-lg-9 mx-auto my-4">
+        {{ include('brand/_form.html.twig') }}
+
+        <a href="{{ path('brand_index') }}">Retour à la liste</a>
+    </div>
+</section>
+<footer>
+    {{ include('includes/footer.php')}}
+</footer>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Connexion{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<div class="my-4 py-2 sections">
+    <div class="col-lg-6 mx-auto my-4" id="login">
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+        
+            <h2 class="text-center">Déjà client de La Nîmes'alerie ? Connectez-vous !</h2>
+            <div class="mb-3">
+                <label for="inputEmail" class="label-control">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            </div>
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+            {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html #}
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                    </label>
+                </div>
+        
+            <button class="btn btn-outline-primary" type="submit">
+                Je me connecte
+            </button>
+        </form>
+    </div>
+</div>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

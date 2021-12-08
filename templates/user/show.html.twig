@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Détail d'un utilisateur{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections">
+    <div class="col-lg-9 mx-auto my-4">
+        <h2 class="text-center mt-2">Utilisateur</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mot de passe</th>
+                <td>{{ user.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('user_edit', {'id': user.id}) }}">Éditer</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+    </div>
+</section>
+    
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

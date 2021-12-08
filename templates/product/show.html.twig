@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Détail du produit{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections my-4">
+    <div class="col-lg-9 mx-auto my-4">
+        <h2 class="text-center my-2">Produit</h2>
+        {% if product.photo1 %}
+        <img class="img-fluid d-flex justify-content-center" src="{{ asset('uploads/images/') ~ product.photo1 }}">
+        {% endif %}
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ product.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ product.description }}</td>
+                </tr>
+                <tr>
+                    <th>Prix hors taxe</th>
+                    <td>{{ product.price }}</td>
+                </tr>
+                <tr>
+                    <th>Prix TTC</th>
+                    <td>{{ product.addTVA(product.price) }}</td>
+                </tr>
+                <tr>
+                    <th>Stock</th>
+                    <td>{{ product.quantity }}</td>
+                </tr>
+                <tr>
+                    <th>Produit actif</th>
+                    <td>{{ product.active ? 'Oui' : 'Non' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <a href="{{ path('product_index') }}">Retour à la liste</a>
+    
+        <a href="{{ path('product_edit', {'id': product.id}) }}">Éditer</a>
+    
+        {{ include('product/_delete_form.html.twig') }}
+    </div>
+</section>
+<footer>
+    {{ include('includes/footer.php')}}
+</footer>
+{% endblock %}

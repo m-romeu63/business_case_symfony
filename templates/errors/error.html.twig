@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Erreur !{% endblock %}
+
+{% block body %}
+    <header>
+        {{ include('_header.html.twig')}}
+    </header>
+    <main>
+        <h3 class="text-center mt-2">Une erreur est survenue !</h3>
+        <div class="col-lg-9 mx-auto my-4">
+            {% for error in errors %}
+                <p class="alert alert-danger">{{ error.message }}</p>
+            {% endfor %}
+            <a href="{{ path('index') }}" class="btn btn-dark">Revenir à l'accueil</a>
+        </div>
+    </main>
+    <footer>
+        {{ include('includes/footer.php') }}
+    </footer>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Catalogue produit{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<main>
+    <section class="sections my-4">
+        <h2 class="text-center pt-2">Produits de la catégorie : {{ category.name }}</h2>
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for product in products %}
+                {% if product.active == true %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        {% if product.new == true %}
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Nouveau !</div>
+                        {% endif %}
+                        <img class="img-fluid card-img-top" src="{{ asset('uploads/images/' ~ product.photo1)}}" alt="photo de {{product.name}}" style="max-height: 270px">
+                        <div class="card-body py-4">
+                            <div class="text-center">
+                                <h5 class="card-title">{{ product.name | upper}}</h5>
+                                {% if product.rating > 0 %}
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        {% for i in 1..product.rating %}
+                                        <div class="bi-star-fill"></div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                {{ product.addTVA(product.price) | format_number({rounding_mode: 'ceiling', fraction_digit: 2})}} €
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto" href="{{path('product_detail', {'id': product.id})}}">Voir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% use "bootstrap_base_layout.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Contact{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <header>
+        {{ include('_header.html.twig') }}
+    </header>
+    <main>
+        <h2 class="text-center mt-2">Une question ? Une demande en particulier ?</h2>
+        <p class="text-center">
+            Pour nous contacter, remplissez le formulaire de contact ci-dessous <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"></path>
+            </svg>
+        </p>
+        <div class="col-lg-6 mx-auto">
+            {{ form_start(form) }}
+            <div class="form-group mb-3">
+                {{ form_row(form.nom) }}
+            </div>
+            <div class="form-group mb-3">
+                {{ form_row(form.prenom) }}
+            </div>
+            <div class="form-group mb-3">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="form-group mb-3">
+                {{ form_row(form.sujet) }}
+            </div>
+            <div class="form-group mb-3">
+                {{ form_row(form.message) }}
+            </div>
+            <div class="form-group mb-3">
+                {{ form_row(form.valider) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+        
+    </main>
+    <footer>
+        {{ include('includes/footer.php') }}
+    </footer>
+</div>
+{% endblock %}

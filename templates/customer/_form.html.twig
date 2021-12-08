@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+    <h4 class="my-4">Veuillez saisir quelques informations vous concernant</h4>
+    <div class="my-3">
+        {{ form_label(form.first_name, 'Votre prénom')}}
+        {{ form_widget(form.first_name)}}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.last_name, 'Votre nom')}}
+        {{ form_widget(form.last_name)}}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.adress, 'Votre adresse (n° de rue, nom d\'immeuble...)')}}
+        {{ form_widget(form.adress)}}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.zip_code, 'Votre code postal')}}
+        {{ form_widget(form.zip_code)}}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.city, 'Votre ville')}}
+        {{ form_widget(form.city)}}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.birth_date, 'Votre date de naissance, nous vous réservons une surprise pour votre anniversaire')}} 
+        {{ form_widget(form.birth_date)}}
+    </div>
+    <button class="btn btn-outline-dark my-2">{{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

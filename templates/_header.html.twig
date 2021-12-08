@@ -1,0 +1,98 @@
+<div class="row align-items-center mb-0 pt-2 pe-0 fs-4">
+    <div class="col-lg-9 d-flex justify-content-around pe-0 me-0">
+        <a href="{{ path('app_homepage')}}" class="d-inline">
+            <h1><span class="iconify-inline" data-icon="flat-ui:rocket"></span> La Nîmes'alerie</h1>
+        </a>
+    </div>
+    <div class="col-lg-3 d-flex justify-content-around pe-0">
+        <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart"
+                viewBox="0 0 16 16">
+                <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+        </a>
+        <div class="dropdown">
+            <button class="dropdown-toggle btn" type="button" data-bs-toggle="dropdown" id="dropdownMonCompte">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMonCompte">
+                {% if app.user %}
+                <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                {% if is_granted("ROLE_ADMIN") %}
+                <li><a class="dropdown-item" href="{{ path('category_index') }}">Gestion des catégories</a></li>
+                <li><a class="dropdown-item" href="{{ path('brand_index') }}">Gestion des marques</a></li>
+                <li><a class="dropdown-item" href="{{ path('product_index') }}">Gestion des produits</a></li>
+                <li><a class="dropdown-item" href="{{ path('user_index') }}">Gestion des utilisateurs</a></li>
+                {% elseif is_granted("ROLE_USER") %}
+                <li><a class="dropdown-item" href="#">Mes commandes</a></li>
+                <li><a class="dropdown-item" href="#">Mes adresses</a></li>
+                {% endif %}
+                <li><a class="dropdown-item" href="{{ path('app_logout') }}"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg> Me déconnecter</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire</a></li>
+                <li><a class="dropdown-item" href="{{ path('app_login') }}">J'ai déjà un compte</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around pe-0" id="cover">
+        <img src="{{ asset('images/illustration_header_business_case.png') }}" class="img-fluid illu-header" style="max-width: 800px;"
+            alt="image d'illustration">
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-0 me-0 pe-0">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-6">
+                {% for category in categories %}
+                {% if category.parentId == null %}
+                <li class="nav-item dropdown mx-2 my-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ category.name }} <span class="iconify" data-icon="{{ category.logo }}"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for child in childCategories %}
+                        {% for ch in child %}
+                        {% if ch.parentId == category.id %}
+                        <li><a class="dropdown-item" href="{{ path('catalog', { id: ch.id } ) }}">
+                                {{ ch.name }}</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% endfor %}
+                <li class="nav-item px-2 mx-3 my-2">
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Votre animal dans l'espace !<span
+                            class="iconify" data-icon="ph:rocket" data-inline="false"></span></a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
+                <button class="btn btn-outline-dark" type="submit">Recherche</button>
+            </form>
+        </div>
+    </div>
+</nav>

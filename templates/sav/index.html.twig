@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Service Après Vente{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<main>
+    <div class="text-center mt-2">
+        <h2>Un problème ? Envoyez une demande à notre service après vente</h2>
+        <p>
+            Pour nous faire parvenir une demande de SAV veuillez remplir le formulaire ci-dessous <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"></path>
+            </svg>
+        </p>
+    </div>
+    <div class="col-lg-6 mx-auto">
+        {{ form_start(form) }}
+            {{ form_row(form.order) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.prenom) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.motif) }}
+            {{ form_row(form.message) }}
+        {{ form_end(form) }}
+    </div>
+    
+</main>
+<footer>
+    {{ include('includes/footer.php')}}
+</footer>
+{% endblock %}

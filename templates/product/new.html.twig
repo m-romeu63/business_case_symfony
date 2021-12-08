@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Ajout d'un produit{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections my-4">
+    <h2 class="text-center my-3">Ajouter un produit</h2>
+    <div class="col-lg-9 mx-auto p-2">
+        {{ include('product/_form.html.twig') }}
+        <a href="{{ path('product_index') }}">Retour à la liste</a>
+    </div>
+</section>
+    
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

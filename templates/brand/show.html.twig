@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'une marque{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+    <h2 class="text-center mt-2">Marque</h2>
+    <div class="col-lg-9 mx-auto my-4">
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ brand.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ brand.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('brand_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('brand_edit', {'id': brand.id}) }}">Éditer</a>
+
+    {{ include('brand/_delete_form.html.twig') }}
+    </div>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

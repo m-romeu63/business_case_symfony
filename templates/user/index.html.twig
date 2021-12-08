@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Liste des utilisateurs{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections">
+    <div class="col-lg-10 mx-auto my-4 py-2">
+        <h2 class="text-center mt-2">Gestion des utilisateurs</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Détail</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Édition</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun utilisateur trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('user_new') }}" class="btn btn-outline-dark">Ajouter</a>
+    </div>
+</section>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

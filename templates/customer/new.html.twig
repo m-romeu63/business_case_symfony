@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Nouveau client{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections my-4">
+    <h2 class="text-center my-3">Bienvenue à La Nîmes'alerie ! Apprenons à nous connaître ! <span class="iconify" data-icon="noto:grinning-cat"></span> </h2>
+    <div class="col-lg-9 mx-auto py-2">
+        {{ include('customer/_form.html.twig') }}
+    </div>
+</section>
+<footer>
+    {{ include('includes/footer.php')}}
+</footer>
+{% endblock %}

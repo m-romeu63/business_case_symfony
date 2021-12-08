@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie{% endblock %}
+
+{% block body %}
+    <header>
+        {{ include('_header.html.twig')}}
+    </header>
+    <main>
+        {{ include('includes/carousel.php')}}
+        {{ include('_promotions.html.twig')}}
+        <div class="container-fluid">
+            <div id="about-us" class="row my-3 sections">
+                <h2 class="text-center">Qui sommes-nous ?</h2>
+                <div class="col-lg-6 p-0" id="illustration-photo">
+                    <img src="{{ asset('images/kim-davies-fEK4jvgnApg-unsplash.jpg')}}" alt="photo d'un chaton qui joue" class="img-fluid">
+                </div>
+                <div class="col-lg-6">
+                    <p>
+                        Est mollit reprehenderit ipsum exercitation enim ex ea ad aliquip aliquip adipisicing. Esse
+                        reprehenderit enim aute id Lorem minim. Ad dolor consequat voluptate pariatur enim.
+                    </p>
+                    <p>
+                        Id deserunt sunt ea elit ad ea aliqua aliquip commodo ipsum ut incididunt magna laboris. Veniam
+                        dolor dolor pariatur esse ex duis reprehenderit exercitation consequat amet do culpa duis consequat.
+                        Duis ullamco non officia id in mollit tempor aliqua cillum Lorem voluptate anim.
+                    </p>
+                    <p>
+                        Enim id aliquip quis id pariatur. Voluptate velit nostrud sint culpa quis. Aute amet anim ut dolor
+                        exercitation pariatur anim reprehenderit laboris enim fugiat consectetur. Velit commodo nostrud
+                        commodo laborum non eu irure deserunt commodo pariatur labore labore. Minim enim eu nisi laboris
+                        tempor ea. Mollit ut qui mollit ullamco ipsum tempor commodo. Ipsum culpa ea irure incididunt sunt
+                        in exercitation culpa tempor adipisicing in quis aliquip aliquip.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {{ include('includes/avis.php') }}
+    </main>
+    <footer>
+        {{ include('includes/footer.php') }}
+    </footer>
+{% endblock %}

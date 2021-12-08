@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Liste des produits{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections">
+    <div class="col-lg-11 mx-auto my-4 py-2">
+        <h2 class="text-center mt-2">Liste des produits</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix H.T en €</th>
+                <th>Quantité</th>
+                <th>Produit actif ?</th>
+                <th>Marque</th>
+                <th>Catégorie(s)</th>
+                <th>Nouveauté</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.active ? 'Oui' : 'Non' }}</td>
+                <td>{{ product.getBrand.name }} </td>
+                <td>
+                    {% for category in product.getCategory %}
+                        {{ category.name }}
+                    {% endfor %}
+                </td>
+                <td>{{ product.new ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('product_show', {'id': product.id}) }}">Détails</a>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">Éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun produit trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('product_new') }}" class="btn btn-outline-dark">Ajouter</a>
+    </div>
+</section>
+
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

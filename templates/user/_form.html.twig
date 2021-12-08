@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    <div class="my-3">
+        {{ form_row(form.email)}}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.password, 'Mot de passe') }}
+        {{ form_widget(form.password)}}
+    </div>
+    <div class="my-3">
+        {{ form_row(form.roles) }}
+    </div>
+    <button class="btn btn-outline-dark my-2">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(form) }}

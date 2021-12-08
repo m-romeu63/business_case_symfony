@@ -1,0 +1,50 @@
+{{ form_start(form) }}
+<h4 class="my-2">Informations générales du produit</h4>
+    <div class="my-3">
+        {{ form_label(form.name, 'Nom du produit')}}
+        {{ form_widget(form.name) }}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.price, 'Prix H.T du produit')}}
+        {{ form_widget(form.price) }}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.description, 'Description du produit')}}
+        {{ form_widget(form.description) }}
+    </div>
+    <h4 class="my-4">Autres informations concernant le produit</h4>
+    <div class="my-3">
+        {{ form_label(form.brand, 'Marque')}}
+        {{ form_widget(form.brand) }}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.category, 'Veuillez sélectionnez la ou les catégorie(s) associée(s) au produit')}}
+        {{ form_widget(form.category) }}
+    </div>
+    <div class="my-3">
+        <p><strong>Nouveau produit ?</strong></p>
+        {{ form_row(form.new, {'label': 'Nouveau'})}}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.quantity, 'Stock du produit')}}
+        {{ form_widget(form.quantity, {'attr': {'type': 'number'}}) }}
+    </div>
+    <div class="my-3">
+        <p><strong>Produit actif ?</strong></p>
+        {{ form_row(form.active, {'label':'Produit actif'})}}
+    </div>
+    <h4 class="my-4">Photos du produit</h4>
+    <div class="my-3">
+        {{ form_label(form.photo1, 'Photo n°1')}}
+        {{ form_widget(form.photo1) }}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.photo2, 'Photo n°2')}}
+        {{ form_widget(form.photo2) }}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.photo3, 'Photo n°3')}}
+        {{ form_widget(form.photo3) }}
+    </div>
+    <button class="btn btn-outline-dark my-2">{{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

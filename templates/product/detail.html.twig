@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Détail {{product.name}}{% endblock %}
+
+{% block body %}
+{{ include('_header.html.twig')}}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <img class="card-img-top mb-5 mb-md-0" src="{{ asset('uploads/images/' ~ product.photo1)}}"
+                    alt="photo de {{ product.name }}" />
+            </div>
+            <div class="col-md-6">
+                <h2 class="display-5 fw-bolder">{{product.name}}</h2>
+                {% if product.rating > 0 %}
+                <p class="text-dark fw-bolder">Note </p>
+                <div class="d-flex small text-warning mb-2">
+                    {% for i in 1..product.rating %}
+                    <div class="bi-star-fill"></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <h5>
+                    {% for category in product.getCategory %}
+                    <a href="{{ path('catalog', {'id': category.id}) }}">{{category.name}}</a>
+                    {% endfor %}
+                </h5>
+                {% if product.new %}
+                <span class="badge rounded-pill bg-dark text-light">Nouveau !</span>
+                {% endif %}
+                <div class="fs-5 mb-5">
+                    <span>{{ product.addTVA(product.price) | format_number({rounding_mode: 'ceiling', fraction_digit: 2}) }}
+                        € TTC</span>
+                </div>
+                <div class="lead">
+                    <p>{{ product.description }}</p>
+                </div>
+                <form class="mt-4 p-3 bg-light shadow" method="post">
+                    <div class="form-group mb-2">
+                        <label for="quantity">Quantité</label>
+                        <input type="number" class="form-control" id="quantity">
+                    </div>
+                    <button class="btn btn-dark"><i class="bi bi-cart-plus-fill"></i> Ajouter au panier</button>
+                </form>
+            </div>
+            {% if product.photo2 or product.photo3 %}
+            <div class="row">
+                <h4>Autres visuels du produit</h4>
+                <div class="col-4 mx-auto">
+                    {% if product.photo3 %}
+                    <img src="{{ asset('uploads/images/' ~ product.photo2) }}" alt="2ème visuel de {{ product.name }}"
+                        class="img-thumbnail">
+                    {% endif %}
+                </div>
+                <div class="col-4 mx-auto">
+                    {% if product.pictureBack %}
+                    <img src="{{ asset('uploads/images/' ~ product.photo3) }}" alt="3ème visuel de {{ product.name }}"
+                        class="img-thumbnail">
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+
+{% endblock %}

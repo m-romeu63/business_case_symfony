@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Liste des marques{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<div class="sections">
+    <h2 class="text-center mt-2">Liste des marques</h2>
+    <div class="col-lg-9 mx-auto my-4 p-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for brand in brands %}
+                <tr>
+                    <td>{{ brand.name }}</td>
+                    <td>
+                        <a href="{{ path('brand_show', {'id': brand.id}) }}">Détail</a>
+                        <a href="{{ path('brand_edit', {'id': brand.id}) }}">Éditer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune marque trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    
+        <a href="{{ path('brand_new') }}">Ajouter</a>
+    </div>
+</div>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

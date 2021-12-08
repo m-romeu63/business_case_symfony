@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Édition d'un produit{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections my-4">
+    <h2 class="text-center mt-2">Éditer un produit</h2>
+    <div class="col-lg-9 mx-auto my-4">
+        {{ include('product/_form.html.twig', {'button_label': 'Éditer'}) }}
+
+        <a href="{{ path('product_index') }}">Retour à la liste</a>
+
+        {{ include('product/_delete_form.html.twig') }}
+    </div>
+</section>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}

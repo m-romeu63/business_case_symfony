@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.logo) }}
+    {{ form_row(form.parent_id) }}
+    <button class="btn btn-outline-dark">{{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

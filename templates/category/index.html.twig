@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Liste des catégories{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections">
+    <div class="col-lg-9 mx-auto my-4 p-2">
+        <h2 class="text-center mt-2">Liste des catégories</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Logo</th>
+                    <th>Catégorie mère</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.logo }} <span class="iconify" data-icon="{{ category.logo }}"></span></td>
+                    <td>
+                        {{ category.parentId }}
+                    </td>
+                    <td>
+                        <a href="{{ path('category_show', {'id': category.id}) }}">Détail</a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}">Éditer</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">Aucune catégorie trouvée</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+        <a href="{{ path('category_new') }}">Ajouter</a>
+    </div>
+</section>
+
+<footer>
+    {{ include('includes/footer.php')}}
+</footer>
+{% endblock %}

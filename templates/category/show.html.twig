@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'une catégorie{% endblock %}
+
+{% block body %}
+    <header>
+        {{ include('_header.html.twig') }}
+    </header>
+    <h2 class="text-center mt-2">Catégorie</h2>
+    <div class="col-lg-9 mx-auto my-4">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ category.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ category.name }}</td>
+                </tr>
+                <tr>
+                    <th>Logo</th>
+                    <td>{{ category.logo }}</td>
+                </tr>
+                <tr>
+                    <th>Parent_id</th>
+                    <td>{{ category.parentId }}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <a href="{{ path('category_index') }}">Retour à la liste</a>
+    
+        <a href="{{ path('category_edit', {'id': category.id}) }}">Éditer</a>
+    
+        {{ include('category/_delete_form.html.twig') }}
+    </div>
+    <footer>
+        {{ include('includes/footer.php') }}
+    </footer>
+{% endblock %}

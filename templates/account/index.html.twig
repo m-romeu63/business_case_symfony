@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Nîmes'alerie : Mon compte{% endblock %}
+
+{% block body %}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<main>
+    <div class="sections my-4">
+        <h2 class="text-center mt-2">Bienvenue à La Nîmes'alerie ! Apprenons à nous connaître !</h2>
+        <div class="col-lg-6 mx-auto p-2">
+            {{ form_start(form) }}
+                {{ form_row(form.gender) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.firstName) }}
+                {{ form_row(form.birthdate) }}
+                {{ form_row(form.submit) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</main>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
+{% endblock %}
