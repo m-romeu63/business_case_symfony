@@ -1,26 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La Nîmes'alerie : Mon compte{% endblock %}
+{% block title %}Account index{% endblock %}
 
 {% block body %}
-<header>
-    {{ include('_header.html.twig') }}
-</header>
-<main>
-    <div class="sections my-4">
-        <h2 class="text-center mt-2">Bienvenue à La Nîmes'alerie ! Apprenons à nous connaître !</h2>
-        <div class="col-lg-6 mx-auto p-2">
-            {{ form_start(form) }}
-                {{ form_row(form.gender) }}
-                {{ form_row(form.name) }}
-                {{ form_row(form.firstName) }}
-                {{ form_row(form.birthdate) }}
-                {{ form_row(form.submit) }}
-            {{ form_end(form) }}
-        </div>
-    </div>
-</main>
-<footer>
-    {{ include('includes/footer.php') }}
-</footer>
+    <h1>Account index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Address</th>
+                <th>Zip_code</th>
+                <th>City</th>
+                <th>Birth_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account.id }}</td>
+                <td>{{ account.firstName }}</td>
+                <td>{{ account.lastName }}</td>
+                <td>{{ account.address }}</td>
+                <td>{{ account.zipCode }}</td>
+                <td>{{ account.city }}</td>
+                <td>{{ account.birthDate ? account.birthDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('account_show', {'id': account.id}) }}">show</a>
+                    <a href="{{ path('account_edit', {'id': account.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('account_new') }}">Create new</a>
 {% endblock %}

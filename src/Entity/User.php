@@ -37,6 +37,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Account::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $account;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,5 +129,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getAccount(): ?Account
+    {
+        return $this->account;
+    }
+
+    public function setAccount(Account $account): self
+    {
+        // set the owning side of the relation if necessary
+        if ($account->getUser() !== $this) {
+            $account->setUser($this);
+        }
+
+        $this->account = $account;
+
+        return $this;
     }
 }

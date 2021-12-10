@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Customer;
+use App\Entity\Account;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +27,7 @@ class CustomerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Customer::class,
+            'data_class' => Account::class,
         ]);
     }
 }

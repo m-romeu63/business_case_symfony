@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Account;
 use App\Entity\Category;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -40,6 +41,11 @@ class RegistrationController extends AbstractController
             $user->setRoles(["ROLE_USER"]);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+            $entityManager->flush();
+            $account = new Account();
+            $account->setUser($user);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($account);
             $entityManager->flush();
             // do anything else you need here, like send an email
 

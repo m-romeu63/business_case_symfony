@@ -2,11 +2,11 @@
     <h2 class="text-center">
         Promotions
     </h2>
-    <div class="container px-4 px-lg-2 mt-5">
+    <div class="container mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% for product in products %}
             {% if product.active == true %}
-            <div class="col mb-5">
+            <div class="col mb-2">
                 <div class="card h-100">
                     <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Promotion !</div>
                     <img class="img-fluid card-img-top" src="{{ asset('uploads/images/' ~ product.photo1)}}" alt="photo de {{product.name}}" style="max-height: 300px">
