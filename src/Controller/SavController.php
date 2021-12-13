@@ -28,8 +28,8 @@ class SavController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
             $savFormData = $form->getData();
-            $api_key='959f5aa5b41cc64ebe9a3ce31f88338f';
-            $api_key_private='3c1dae6fdc9391994227f15121536d48'; 
+            $api_key= $this->getParameter('api_key');
+            $api_key_private= $this->getParameter('api_key_private'); 
     
             $mj = new \Mailjet\Client($api_key,$api_key_private,true,['version' => 'v3.1']);
             $body = [
