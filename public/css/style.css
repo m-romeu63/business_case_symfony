@@ -1,7 +1,10 @@
 body{
-    background-color: #f0f4ff;
-    color: #2D2D2E;
+    background-color: #F9F3F3;
+    color: #2f3640;
     font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+#title{
+    font-family: 'Zen Dots', cursive;
 }
 
 #cover{
@@ -18,11 +21,11 @@ body{
 
 a{
     text-decoration: none;
-    color: #2D2D2E;
+    color: #2f3640;
 }
 
 a:hover{
-    color: #3b6df7;
+    color: #70a1ff;
 }
 
 #img-card{
@@ -40,9 +43,7 @@ a:hover{
 }
 
 footer{
-    background-color: #546b9bb7;
-    backdrop-filter: blur(2px);
-    color: white;
+    background-color: #ced6e0;
 }
 
 #reseaux img{
@@ -83,11 +84,11 @@ footer{
 
 #contact a{
     text-decoration: none;
-    color: white;
+    color: #2f3640;
 }
 
 #contact a:hover{
-    color: #3b6df7;
+    color: #70a1ff;
 }
 
 .old-price {
