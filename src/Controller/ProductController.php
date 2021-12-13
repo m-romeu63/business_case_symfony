@@ -180,9 +180,15 @@ class ProductController extends AbstractController
     public function delete(Request $request, Product $product): Response
     {
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+            $photo1 = $product->getPhoto1();
+            $photo2 = $product->getPhoto2();
+            $photo3 = $product->getPhoto3();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
+            unlink('/uploads/images/'.$photo1);
+            unlink('/uploads/images/'.$photo2);
+            unlink('/uploads/images/'.$photo3);
         }
 
         return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);

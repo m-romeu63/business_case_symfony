@@ -23,7 +23,7 @@
                 {% endif %}
                 <h5>
                     {% for category in product.getCategory %}
-                    <a href="{{ path('catalog', {'id': category.id}) }}">{{category.name}}</a>
+                    <a href="{{ path('catalog', {'id': category.id}) }}">{{category.name}} > </a>
                     {% endfor %}
                 </h5>
                 {% if product.new %}

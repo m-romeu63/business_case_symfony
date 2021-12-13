@@ -24,7 +24,9 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'attr' => ['rows' => 6]
             ])
-            ->add('valider', SubmitType::class)
+            ->add('valider', SubmitType::class, [
+                'attr' => ['class'=>'btn btn-outline-dark']
+            ])
         ;
     }
 

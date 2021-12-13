@@ -36,7 +36,8 @@ class SavType extends AbstractType
                 'attr' => ['rows' => 6]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Valider'
+                'label' => 'Valider',
+                'attr' => ['class' => 'btn btn-outline-dark']
             ])
         ;
     }
