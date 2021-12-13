@@ -28,8 +28,8 @@ class ContactController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $contactFormData = $form->getData();;
-            $api_key='3b37e2aa51256c5dce591ffaaca48c40';
-            $api_key_private='4d9f6ac8b27182a48c9cbb0015d78108'; 
+            $api_key= $this->getParameter('api_key');
+            $api_key_private= $this->getParameter('api_key_private'); 
     
             $mj = new \Mailjet\Client($api_key,$api_key_private,true,['version' => 'v3.1']);
             $body = [
@@ -41,7 +41,7 @@ class ContactController extends AbstractController
                 ],
                 'To' => [
                 [
-                    'Email' => "mromeu@stagiaire-humanbooster.com",
+                    'Email' => "marine.romeu@hotmail.fr",
                     'Name' => "Marine"
                 ]
                 ],

@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Account{% endblock %}
+{% block title %}La Nîmes'alerie : Gestion du compte client{% endblock %}
 
 {% block body %}
-    <h1>Edit Account</h1>
-
-    {{ include('account/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('account_index') }}">back to list</a>
-
-    {{ include('account/_delete_form.html.twig') }}
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<section class="sections my-4">
+    <h2 class="text-center mt-2">Modifier mon compte La Nîmes'alerie</h2>
+    <div class="col-lg-9 mx-auto my-4">
+        {{ include('account/_form.html.twig', {'button_label': 'Éditer'}) }}
+        {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('account_index') }}">back to list</a>
+        {% endif %}
+        {{ include('account/_delete_form.html.twig') }}
+    </div>
+    
+</section>
+<footer>
+    {{ include('includes/footer.php')}}
+</footer>
 {% endblock %}

@@ -1,45 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Account index{% endblock %}
+{% block title %}La Nîmes'alerie : Listes des comptes clients{% endblock %}
 
 {% block body %}
-    <h1>Account index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>First_name</th>
-                <th>Last_name</th>
-                <th>Address</th>
-                <th>Zip_code</th>
-                <th>City</th>
-                <th>Birth_date</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for account in accounts %}
-            <tr>
-                <td>{{ account.id }}</td>
-                <td>{{ account.firstName }}</td>
-                <td>{{ account.lastName }}</td>
-                <td>{{ account.address }}</td>
-                <td>{{ account.zipCode }}</td>
-                <td>{{ account.city }}</td>
-                <td>{{ account.birthDate ? account.birthDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('account_show', {'id': account.id}) }}">show</a>
-                    <a href="{{ path('account_edit', {'id': account.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('account_new') }}">Create new</a>
+<header>
+    {{ include('_header.html.twig') }}
+</header>
+<div class="sections">
+    <h2 class="text-center mt-2">Listes des comptes clients</h2>
+    <div class="col-lg-9 mx-auto my-4 p-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Addresse</th>
+                    <th>Code postal</th>
+                    <th>Ville</th>
+                    <th>Date de naissance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for account in accounts %}
+                <tr>
+                    <td>{{ account.id }}</td>
+                    <td>{{ account.firstName }}</td>
+                    <td>{{ account.lastName }}</td>
+                    <td>{{ account.address }}</td>
+                    <td>{{ account.zipCode }}</td>
+                    <td>{{ account.city }}</td>
+                    <td>{{ account.birthDate ? account.birthDate|date('d-m-Y') : '' }}</td>
+                    <td>
+                        <a href="{{ path('account_show', {'id': account.id}) }}">Détail</a>
+                        <a href="{{ path('account_edit', {'id': account.id}) }}">Éditer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun compte client trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('account_new') }}">Ajouter</a>
+    </div>
+</div>
+<footer>
+    {{ include('includes/footer.php') }}
+</footer>
 {% endblock %}

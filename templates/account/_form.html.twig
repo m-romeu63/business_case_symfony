@@ -1,4 +1,35 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {% if is_granted("ROLE_USER") %}
+        <h4 class=" my-2">
+            Bienvenue à La Nîmes'alerie, apprenons à nous connaitre ! <span class="iconify" data-icon="fa-solid:smile-wink"></span>
+        </h4>
+        <div class="my-3">
+            {{ form_label(form.first_name, 'Votre prénom') }}
+            {{ form_widget(form.first_name)}}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.last_name, 'Votre nom')}}
+            {{ form_widget(form.last_name)}}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.address, 'Votre adresse de livraison')}}
+            {{ form_widget(form.address)}}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.zip_code, 'Votre code postal') }}
+            {{ form_widget(form.zip_code)}}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.city, 'Votre ville') }}
+            {{ form_widget(form.city) }}
+        </div>
+        <h4 class="my-2">
+            Une surprise vous attend pour votre anniversaire ! <span class="iconify" data-icon="noto:wrapped-gift"></span>
+        </h4>
+        <div class="my-3">
+            {{ form_label(form.birth_date, 'Votre date d\'anniversaire')}}
+            {{ form_widget(form.birth_date)}}
+        </div>
+    {% endif %}
+    <button class="btn">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

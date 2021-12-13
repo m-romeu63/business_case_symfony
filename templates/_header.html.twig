@@ -23,7 +23,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMonCompte">
                 {% if app.user %}
-                <li><a class="dropdown-item" href="{{ path('account') }}">Mon compte</a></li>
+                <li><a class="dropdown-item" href="{{ path('account_show', {'id': app.user.getAccount().id}) }}">Mon compte</a></li>
                 {% if is_granted("ROLE_ADMIN") %}
                 <li><a class="dropdown-item" href="{{ path('category_index') }}">Gestion des catégories</a></li>
                 <li><a class="dropdown-item" href="{{ path('brand_index') }}">Gestion des marques</a></li>

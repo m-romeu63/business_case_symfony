@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Account;
+use App\Entity\Category;
 use App\Form\AccountType;
 use App\Repository\AccountRepository;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,20 +22,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccountController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="account_index", methods={"GET"})
      */
     public function index(AccountRepository $accountRepository): Response
     {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        foreach ($categories as $category) {
+            if($category->getParentId()!== null) {
+                $childCategories[$category->getParentId()] = $this->getDoctrine()->getRepository(Category::class)->findByParentId($category->getParentId());
+            }
+        }
         return $this->render('account/index.html.twig', [
             'accounts' => $accountRepository->findAll(),
+            'categories' => $categories,
+            'childCategories' => $childCategories
         ]);
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="account_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        foreach ($categories as $category) {
+            if($category->getParentId()!== null) {
+                $childCategories[$category->getParentId()] = $this->getDoctrine()->getRepository(Category::class)->findByParentId($category->getParentId());
+            }
+        }
+
         $account = new Account();
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
@@ -45,6 +67,8 @@ class AccountController extends AbstractController
         return $this->renderForm('account/new.html.twig', [
             'account' => $account,
             'form' => $form,
+            'categories' => $categories,
+            'childCategories' => $childCategories
         ]);
     }
 
@@ -53,8 +77,16 @@ class AccountController extends AbstractController
      */
     public function show(Account $account): Response
     {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        foreach ($categories as $category) {
+            if($category->getParentId()!== null) {
+                $childCategories[$category->getParentId()] = $this->getDoctrine()->getRepository(Category::class)->findByParentId($category->getParentId());
+            }
+        }
         return $this->render('account/show.html.twig', [
             'account' => $account,
+            'childCategories' => $childCategories,
+            'categories' => $categories
         ]);
     }
 
@@ -63,6 +95,12 @@ class AccountController extends AbstractController
      */
     public function edit(Request $request, Account $account, EntityManagerInterface $entityManager): Response
     {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        foreach ($categories as $category) {
+            if($category->getParentId()!== null) {
+                $childCategories[$category->getParentId()] = $this->getDoctrine()->getRepository(Category::class)->findByParentId($category->getParentId());
+            }
+        }
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
 
@@ -75,6 +113,8 @@ class AccountController extends AbstractController
         return $this->renderForm('account/edit.html.twig', [
             'account' => $account,
             'form' => $form,
+            'categories' => $categories,
+            'childCategories' => $childCategories,
         ]);
     }
 
