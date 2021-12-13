@@ -5,7 +5,8 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
-use App\Repository\CategoryRepository;
+use App\Form\AddToCartType;
+use App\Manager\CartManager;
 use App\Services\FileUploader;
 use App\Repository\ProductRepository;
 
@@ -114,7 +115,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/{id}/detail", name="product_detail")
      */
-    public function getDetail(Product $product): Response
+    public function getDetail(Product $product, Request $request, CartManager $cartManager): Response
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         foreach ($categories as $category) {
@@ -122,10 +123,29 @@ class ProductController extends AbstractController
                 $childCategories[$category->getParentId()] = $this->getDoctrine()->getRepository(Category::class)->findByParentId($category->getParentId());
             }
         }
+
+        $form = $this->createForm(AddToCartType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $item = $form->getData();
+            $item->setProduct($product);
+
+            $cart = $cartManager->getCurrentCart();
+            $cart
+                ->addItem($item)
+                ->setUpdatedAt(new \DateTime());
+
+            $cartManager->save($cart);
+
+            return $this->redirectToRoute('product_detail', ['id' => $product->getId()]);
+        }
+
         return $this->render('product/detail.html.twig', [
             'product' => $product,
             'categories' => $categories,
             'childCategories' => $childCategories,
+            'form' => $form->createView()
         ]);
     }
 

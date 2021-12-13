@@ -36,13 +36,20 @@
                 <div class="lead">
                     <p>{{ product.description }}</p>
                 </div>
-                <form class="mt-4 p-3 bg-light shadow" method="post">
-                    <div class="form-group mb-2">
-                        <label for="quantity">Quantité</label>
-                        <input type="number" class="form-control" id="quantity">
+                <div class="form-group">
+                    {{ form_start(form) }}
+                    <div class="my-3">
+                        {{ form_label(form.quantity, 'Quantité') }}
+                        {{ form_widget(form.quantity) }}
                     </div>
-                    <button class="btn btn-dark"><i class="bi bi-cart-plus-fill"></i> Ajouter au panier</button>
-                </form>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.quantity) }}
+                    </div>
+                    <div class="my-3">
+                        {{ form_widget(form.add, {'attr': {'class': 'btn btn-dark'}}) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
             </div>
             {% if product.photo2 or product.photo3 %}
             <div class="row">
