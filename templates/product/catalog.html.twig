@@ -17,7 +17,7 @@
                         {% if product.new == true %}
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Nouveau !</div>
                         {% endif %}
-                        <img class="img-fluid card-img-top" src="{{ asset('uploads/images/' ~ product.photo1)}}" alt="photo de {{product.name}}" style="max-height: 270px">
+                        <img class="img-fluid card-img-top" src="{{ asset('uploads/images/' ~ product.photo1) | imagine_filter('thumb')}}" alt="photo de {{product.name}}" style="max-height: 270px">
                         <div class="card-body py-4">
                             <div class="text-center">
                                 <h5 class="card-title">{{ product.name | upper}}</h5>
