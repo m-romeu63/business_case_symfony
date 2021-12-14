@@ -7,7 +7,7 @@
 <header>
     {{ include('_header.html.twig') }}
 </header>
-<div class="my-4 p-2 sections">
+<div class="my-5 p-2 sections">
     <h2 class="text-center mt-2">Votre panier La Nîmes'alerie</h2>
     {% if cart.items.count > 0 %}
     <div class="row mt-4">
@@ -56,7 +56,7 @@
                     {% endfor %}
                 </ul>
             </div>
-            {{ form_end(form, {'render_rest': false}) }}
+            {{ form_end(form) }}
         </div>
         <!-- Summary -->
         <div class="col-md-4">
@@ -80,7 +80,7 @@
     </div>
     {% endif %}
 </div>
-<footer>
+<footer class="footer mt-auto">
     {{ include('includes/footer.php')}}
 </footer>
 {% endblock %}
