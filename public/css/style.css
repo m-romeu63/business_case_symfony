@@ -80,6 +80,6 @@ footer{
     color: #716F81;
 }
 
-.old-price {
-    text-decoration: line-through;
+h5.product-brand{
+    font-weight: bolder;
 }

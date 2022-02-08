@@ -26,6 +26,9 @@
                     <a href="{{ path('catalog', {'id': category.id}) }}">{{category.name}} > </a>
                     {% endfor %}
                 </h5>
+                <h5 class="product-brand">
+                    {{ product.getBrand.name }}
+                </h5>
                 {% if product.new %}
                 <span class="badge rounded-pill bg-dark text-light">Nouveau !</span>
                 {% endif %}
@@ -55,14 +58,14 @@
             <div class="row">
                 <h4>Autres visuels du produit</h4>
                 <div class="col-4 mx-auto">
-                    {% if product.photo3 %}
-                    <img src="{{ asset('uploads/images/' ~ product.photo2) }}" alt="2ème visuel de {{ product.name }}"
+                    {% if product.photo2 %}
+                    <img src="{{ asset('uploads/images/' ~ product.photo2) | imagine_filter('other') }}" alt="2ème visuel de {{ product.name }}"
                         class="img-thumbnail">
                     {% endif %}
                 </div>
                 <div class="col-4 mx-auto">
-                    {% if product.pictureBack %}
-                    <img src="{{ asset('uploads/images/' ~ product.photo3) }}" alt="3ème visuel de {{ product.name }}"
+                    {% if product.photo3 %}
+                    <img src="{{ asset('uploads/images/' ~ product.photo3) | imagine_filter('other') }}" alt="3ème visuel de {{ product.name }}"
                         class="img-thumbnail">
                     {% endif %}
                 </div>
